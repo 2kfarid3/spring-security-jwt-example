@@ -48,7 +48,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         saveUserToken(savedUser, jwtToken);
 
-        return UserResponse.builder().token(jwtToken).build();
+        return UserResponse.builder().token(jwtToken).success(true).statusCode(200).build();
     }
 
     public UserResponse auth(LoginRequest loginRequest) {
@@ -60,7 +60,7 @@ public class AuthenticationService {
         revokeUserAllTokens(user);
         saveUserToken(user, token);
 
-        return UserResponse.builder().token(token).build();
+        return UserResponse.builder().token(token).success(true).statusCode(200).build();
     }
 
     private void saveUserToken(User user, String jwtToken) {
